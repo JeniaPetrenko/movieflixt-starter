@@ -12,12 +12,13 @@ describe("MoviesPage component", () => {
   });
 
   describe("MoviesPage REST API call", () => {
-    it("should display image for each movie", async () => {});
-    const images = await screen.findAllByRole("img");
-    expect(images).toHaveLength(2);
+    it("should display image for each movie", async () => {
+      const images = await screen.findAllByRole("img");
+      expect(images).toHaveLength(2);
 
-    //@ts-expect-error: ignore alt problem...
-    const altTitles = images.map((elem) => elem.alt);
-    expect(altTitles).toEqual(["Venom: the Last Dance", "Terrifier 3"]);
+      //@ts-expect-error: ignore alt problem...
+      const altTitles = images.map((elem) => elem.alt);
+      expect(altTitles).toEqual(["Venom: the Last Dance", "Terrifier 3"]);
+    });
   });
 });

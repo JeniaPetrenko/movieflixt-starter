@@ -1,28 +1,24 @@
 import { useState, useEffect } from "react";
 import { Header } from "../Components/UI/Header";
-import axios from "axios";
+import { IMovie } from "../Models/IMovie";
+import { GridList } from "../Components/GridList";
+import { LoadMovies } from "../Utilities/LoadMovies";
 
 export const MoviesPage = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     loadMovies();
   }, []);
 
   const loadMovies = async () => {
-    const result = await axios.get(
-      "https://api.themoviedb.org/3/discover/movie?api_key=7b35db62c2be9745bcb97ad14ebd2f35&include_adult=false&include_video=false&language=sv-SE&page=1&sort_by=popularity.desc"
-    );
-    console.log(result.data.results);
-    setMovies(result.data.results);
+    setMovies(await LoadMovies("discover/movie"));
   };
 
   return (
     <>
-      <Header title="Populära Filmer" />;
-      {movies.map((movie) => (
-        <img src={movie.poster_path} alt={movie.title} />
-      ))}
+      <Header title="Populära Filmer" />
+      <GridList movies={movies} />
     </>
   );
 };

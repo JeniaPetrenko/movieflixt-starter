@@ -1,3 +1,4 @@
+//код визначає фейковий обробник для тестування у справжньому сервері.
 import { http, HttpResponse } from "msw";
 
 export const handlers = [

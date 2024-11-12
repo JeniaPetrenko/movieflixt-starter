@@ -1,4 +1,4 @@
-import styeles from "./header.module.css";
+import styles from "./header.module.css";
 export const Header = ({ title }: { title: string }) => {
-  return <h1 className={styeles.title}>{title}</h1>;
+  return <h1 className={styles.title}>{title}</h1>;
 };

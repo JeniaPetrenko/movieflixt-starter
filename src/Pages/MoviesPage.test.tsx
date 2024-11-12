@@ -4,13 +4,16 @@ import { render, screen } from "@testing-library/react";
 //Importera MoviesPage component...
 import { MoviesPage } from "./MoviesPage";
 
+//тест beforeEach рендерить сторінку перед кожним тестом
 beforeEach(() => render(<MoviesPage />));
 
+//перевіряє наявність заголовка з текстом "Populära Filmer"
 describe("MoviesPage component", () => {
   it("should have a heading with the text Populära Filmer", () => {
     screen.getByRole("heading", { name: /filmer$/i });
   });
 
+  //тестирує відображення зображення для кожного фільму, імітує виклик api
   describe("MoviesPage REST API call", () => {
     it("should display image for each movie", async () => {
       const images = await screen.findAllByRole("img");
@@ -22,3 +25,9 @@ describe("MoviesPage component", () => {
     });
   });
 });
+
+/* Код створює компоненти MoviesPage і HomePage для рендерингу відповідних
+ сторінок з фільмами та домашньої сторінки. Тести перевіряють, що компоненти 
+ правильно рендерять заголовки і, що MoviesPage виконує запит до API та
+ відображає зображення для кожного фільму.
+*/

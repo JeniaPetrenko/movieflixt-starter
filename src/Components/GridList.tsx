@@ -1,17 +1,31 @@
 //імпортуємо IMovie - інтерфейс, який описує структуру фільму
 import { IMovie } from "../Models/IMovie";
+import { ITVshow } from "../Models/ITVshow";
 
 import styles from "./gridlist.module.css";
 import { Item } from "./Item";
 
+interface GridListProps {
+  movies?: IMovie[]; // Робимо movies опціональним
+  tvShows?: ITVshow[]; // Додаємо опціональний масив для tvShows
+}
+
 //визначаємо компонент GridList, який приймає масив фільмів і відображає їч у вигляді сітки
-export const GridList = ({ movies }: { movies: IMovie[] }) => {
+export const GridList = ({ movies = [], tvShows = [] }: GridListProps) => {
+  const items = [...movies, ...tvShows];
+
   return (
     <section className={styles.grid}>
-      {movies && movies.length > 0 ? (
-        movies.map((movie: IMovie) => <Item key={movie.id} movie={movie} />)
+      {items.length > 0 ? (
+        items.map((item) => (
+          <Item
+            key={item.id}
+            movie={"title" in item ? item : undefined}
+            tvShow={"name" in item ? item : undefined}
+          />
+        ))
       ) : (
-        <p>No movies available.</p>
+        <p>No items available.</p>
       )}
     </section>
   );

@@ -3,7 +3,7 @@ import { http, HttpResponse } from "msw";
 
 export const handlers = [
   http.get(
-    "/https://api.themoviedb.org/3/discover/movie?api_key=7b35db62c2be9745bcb97ad14ebd2f35&include_adult=false&include_video=false&language=sv-SE&page=1&sort_by=popularity.desc",
+    "https://api.themoviedb.org/3/discover/movie?api_key=7b35db62c2be9745bcb97ad14ebd2f35&include_adult=false&include_video=false&language=sv-SE&page=1&sort_by=popularity.desc",
     () => {
       // Note that you DON'T have to stringify the JSON!
       return HttpResponse.json({
@@ -63,6 +63,53 @@ export const handlers = [
         ],
         total_pages: 47046,
         total_results: 940906,
+      });
+    }
+  ),
+  // Обробник для запиту TV-шоу
+  http.get(
+    "https://api.themoviedb.org/3/discover/tv?api_key=7b35db62c2be9745bcb97ad14ebd2f35&include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc",
+    () => {
+      return HttpResponse.json({
+        page: 1,
+        results: [
+          {
+            adult: false,
+            backdrop_path: "/aizbHLcKVWvJ7jxkflJzTu5Z8GE.jpg",
+            genre_ids: [10766],
+            id: 81329,
+            origin_country: ["FR"],
+            original_language: "fr",
+            original_name: "Un si grand soleil",
+            overview:
+              "Claire is surprised when she gets arrested for the murder of her childhood friend after she returns to Montpellier.",
+            popularity: 3402.077,
+            poster_path: "/t6jVlbPMtZOJoAOfeoR4yQmnjXM.jpg",
+            first_air_date: "2018-08-27",
+            name: "Chronicles of the Sun",
+            vote_average: 6.836,
+            vote_count: 110,
+          },
+          {
+            adult: false,
+            backdrop_path: "/l7LRGYJY3NzIGBlpvHpMsNXHbm5.jpg",
+            genre_ids: [10751, 35],
+            id: 218145,
+            origin_country: ["SK"],
+            original_language: "sk",
+            original_name: "Mama na prenájom",
+            overview:
+              "Abandoned by his wife, Martin is lying to his daughter not to be upset. But as Hanka grows, these lies become unbearable. Martin meets Nada unexpectedly, asked her to be a rent-a-mother and all lives are completely changed.",
+            popularity: 3283.693,
+            poster_path: "/fH7PP2Rkdlo414IHvZABBHhtoqd.jpg",
+            first_air_date: "2023-01-09",
+            name: "Mom for rent",
+            vote_average: 5.5,
+            vote_count: 32,
+          },
+        ],
+        total_pages: 9270,
+        total_results: 185396,
       });
     }
   ),

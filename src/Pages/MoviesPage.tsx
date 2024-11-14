@@ -1,6 +1,8 @@
 //component for showing the movies page
 import { useState, useEffect } from "react";
 import { Header } from "../Components/UI/Header";
+
+//import the IMovie interface for the type of movie data
 import { IMovie } from "../Models/IMovie";
 import { GridList } from "../Components/GridList";
 import { LoadMovies } from "../Utilities/LoadMovies";
